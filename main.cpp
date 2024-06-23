@@ -3,7 +3,12 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello World!";
+    int A, B;
 
+    while (cin >> A >> B)
+    {
+        cout << A+B << "\n";
+    }
+    
     return 0;
 }
