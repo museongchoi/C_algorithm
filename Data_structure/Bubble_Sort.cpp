@@ -1,4 +1,4 @@
-// swap() 함수 사용
+// 1. swap() 함수 사용
 #include <iostream>
 #include <algorithm>
 using namespace std;
@@ -48,17 +48,101 @@ int main()
     return 0;
 }
 
-// display 배열 출력 함수와 while 문 사용 bubble 정렬 함수
+// 2. display 배열 출력 함수 + while 문 사용 bubble 정렬 함수.
 #include <iostream>
 #include <algorithm>
 using namespace std;
 
+// main 함수 밑에 기능적 함수를 작성 할 때, 해당 함수를 미리 호출.
+// void display(int arr[]);
 
+void display(int arr[], int s)
+{
+    cout << "arr : ";
+    for (int i = 0; i < s; i++)
+        cout << arr[i] << " ";
+    cout << "\n";
+}
+
+void while_bubble_sort(int arr[], int s)
+{
+    int m = s;
+    int k = 0;
+
+    while (m != 1)
+    {
+        for (int i = 0; i < m-1; i++)
+        {
+            cout << "ch : ";
+            display(arr, s);
+            if (arr[i] > arr[i+1])
+            {
+                k = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = k;
+            }
+        }
+        m--;
+    }
+}
 
 int main()
 {
     int arr[] = {5, 3, 8, 1, 2, 7};
+    int s = sizeof(arr) / sizeof(arr[0]);
 
-    //display(arr);
+    display(arr, s);
+
+    while_bubble_sort(arr, s);
+
+    display(arr, s);
+
+    return 0;
+}
+
+// 3. while 문 안에 swap 사용
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+void display(int arr[], int s)
+{
+    cout << "arr : ";
+    for (int i = 0; i < s; i++)
+        cout << arr[i] << " ";
+    cout << "\n";
+}
+
+void while_bubble_sort(int arr[], int s)
+{
+    int m = s;
+    int k = 0;
+
+    while (m != 1)
+    {
+        for (int i = 0; i < m-1; i++)
+        {
+            cout << "ch : ";
+            display(arr, s);
+            if (arr[i] > arr[i+1])
+            {
+                swap(arr[i], arr[i+1]);
+            }
+        }
+        m--;
+    }
+}
+
+int main()
+{
+    int arr[] = {5, 3, 8, 1, 2, 7};
+    int s = sizeof(arr) / sizeof(arr[0]);
+
+    display(arr, s);
+
+    while_bubble_sort(arr, s);
+
+    display(arr, s);
+
     return 0;
 }
