@@ -164,3 +164,54 @@ int main()
 
     return 0;
 }
+
+// 4. while 문 사용
+#include <iostream>
+using namespace std;
+
+void display(int arr[], int s)
+{
+    for (int i = 0; i < s; i++)
+        cout << arr[i] << " ";
+    cout << "\n";
+}
+
+void while_shell_sort(int arr[], int s)
+{
+    int i, j, tmp;
+    int gap = s/2;
+
+    while (gap > 0)
+    {
+        for (int i = gap; i < s; i++)
+        {
+            int tmp = arr[i];
+            j = i;
+            // j 가 gap 보다 크거나 같아야 한다. && arr[j-gap] : 앞에 값이 tmp : 현재 변경 요소 값보다 작으면 변경
+            // j 가 gap 보다 작아지면 arr[j-gap] 접근이 배열의 유효 범위를 벗어날 수 있기 때문이다. 배열의 인덱스가 음수가 되는 것을 방지.
+            while (j >= gap && arr[j-gap] > tmp)
+            {
+                arr[j] = arr[j-gap]; // 조건 : 앞에 값이 큼. 즉, gap 간격인 앞에 값을 현재 tmp 가 가르키는 arr[j] 자리 뒤에 저장.
+                j -= gap; 
+            }
+            arr[j] = tmp;
+        }
+        gap /= 2;
+    }
+}
+
+int main()
+{
+    int arr[] = {10, 8, 6, 20, 4, 3, 22, 1, 0, 15, 16};
+    int s = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Original array : ";
+    display(arr, s);
+
+    while_shell_sort(arr, s);
+
+    cout << "sort array : ";
+    display(arr, s);
+
+    return 0;
+}
